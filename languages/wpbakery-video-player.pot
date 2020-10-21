@@ -1,0 +1,134 @@
+# Copyright (C) 2020 NuttTaro
+# This file is distributed under the same license as the WPBakery Video Player plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPBakery Video Player 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpbakery-video-player\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-10-21T07:11:09+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: wpbakery-video-player\n"
+
+#. Plugin Name of the plugin
+msgid "WPBakery Video Player"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/wpbakery-video-player/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Video Player add-on for WPBakery Page Builder with YouTube, Vimeo and Self-Hosted videos (HTML5)"
+msgstr ""
+
+#. Author of the plugin
+msgid "NuttTaro"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://nutttaro.com"
+msgstr ""
+
+#: templates/video-html5.php:5
+msgid "Your browser does not support the video tag."
+msgstr ""
+
+#: wpbakery-video-player.php:122
+msgid "Content"
+msgstr ""
+
+#: wpbakery-video-player.php:126
+msgid "Video Type"
+msgstr ""
+
+#: wpbakery-video-player.php:130
+msgid "Self-Hosted videos (HTML5)"
+msgstr ""
+
+#: wpbakery-video-player.php:131
+msgid "Youtube or Vimeo"
+msgstr ""
+
+#: wpbakery-video-player.php:138
+msgid "Video"
+msgstr ""
+
+#: wpbakery-video-player.php:141
+msgid "Select video from media library."
+msgstr ""
+
+#: wpbakery-video-player.php:147
+msgid "Video URL"
+msgstr ""
+
+#: wpbakery-video-player.php:150
+msgid "Youtube or Vimeo URL that should be embedded the video."
+msgstr ""
+
+#: wpbakery-video-player.php:156
+msgid "Width"
+msgstr ""
+
+#: wpbakery-video-player.php:163
+msgid "Height"
+msgstr ""
+
+#: wpbakery-video-player.php:170
+msgid "Controls"
+msgstr ""
+
+#: wpbakery-video-player.php:172
+#: wpbakery-video-player.php:181
+#: wpbakery-video-player.php:188
+#: wpbakery-video-player.php:195
+msgid "Yes"
+msgstr ""
+
+#: wpbakery-video-player.php:178
+msgid "Autoplay"
+msgstr ""
+
+#: wpbakery-video-player.php:180
+msgid "Video will muted sound because some browser block autoplay the video."
+msgstr ""
+
+#: wpbakery-video-player.php:186
+msgid "Muted"
+msgstr ""
+
+#: wpbakery-video-player.php:193
+msgid "Loop"
+msgstr ""
+
+#: wpbakery-video-player.php:200
+msgid "Element ID"
+msgstr ""
+
+#: wpbakery-video-player.php:202
+msgid "Enter element ID (Note: make sure it is unique and valid according to %sw3c specification%s)."
+msgstr ""
+
+#: wpbakery-video-player.php:206
+msgid "Extra class name"
+msgstr ""
+
+#: wpbakery-video-player.php:208
+msgid "Style particular content element differently - add a class name and refer to it in custom CSS."
+msgstr ""
+
+#: wpbakery-video-player.php:242
+msgid "Add video"
+msgstr ""
+
+#: wpbakery-video-player.php:243
+msgid "Remove video"
+msgstr ""
+
+#: wpbakery-video-player.php:324
+msgid "<strong>WPBakery Video Player</strong> is enabled but not effective. It requires <strong>WPBakery Page Builder</strong> in order to work."
+msgstr ""
