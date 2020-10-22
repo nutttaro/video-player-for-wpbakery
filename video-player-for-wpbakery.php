@@ -26,9 +26,9 @@ define('WBVP_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WBVP_VERSION', '1.0.0');
 
 /**
- * Class Wpbakery_Video_Player
+ * Class Video_Player_For_WPBakery
  */
-class Wpbakery_Video_Player
+class Video_Player_For_WPBakery
 {
 
     /** @var null $instance */
@@ -63,7 +63,7 @@ class Wpbakery_Video_Player
             add_action('vc_load_default_params', [$this, 'vc_load_params'], 999);
             add_action('vc_before_init', [$this, 'vc_map'], 999);
 
-            add_shortcode('wpbakery_video_player', [$this, 'wpbakery_video_player']);
+            add_shortcode('video_player_for_wpbakery', [$this, 'video_player_for_wpbakery']);
         } else {
             add_action('admin_notices', [$this, 'missing_plugins_warning']);
         }
@@ -116,7 +116,7 @@ class Wpbakery_Video_Player
             vc_map(
                 [
                     "name"     => esc_html__("Video Player"),
-                    "base"     => "wpbakery_video_player",
+                    "base"     => "video_player_for_wpbakery",
                     "class"    => 'video-player-for-wpbakery',
                     "icon"     => WBVP_PLUGIN_URL . "assets/images/video-player.svg",
                     "category" => esc_html__('Content', 'video-player-for-wpbakery'),
@@ -253,7 +253,7 @@ class Wpbakery_Video_Player
      * @param $atts
      * @return string|void
      */
-    public function wpbakery_video_player($atts)
+    public function video_player_for_wpbakery($atts)
     {
         wp_enqueue_style('wbvp-video-style');
 
@@ -328,4 +328,4 @@ class Wpbakery_Video_Player
 
 }
 
-Wpbakery_Video_Player::instance();
+Video_Player_For_WPBakery::instance();
