@@ -1,18 +1,18 @@
-=== WPBakery Video Player ===
+=== Video Player for WPBakery ===
 Contributors: nutttaro
 Donate link: https://www.buymeacoffee.com/nutttaro
-Tags: wpbakery-video-player, video-player, html5, self-hosted-video
+Tags: video-player-for-wpbakery, video-player, html5, self-hosted-video
 Requires at least: 4.7
 Tested up to: 5.5.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPBakery Video Player add-on for WPBakery Page Builder allow add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
+Video Player for WPBakery add-on for WPBakery Page Builder allow add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
 
 == Description ==
 
-WPBakery Video Player add-on for WPBakery Page Builder allows add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
+Video Player for WPBakery add-on for WPBakery Page Builder allows add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
 
 Features:
 
@@ -21,7 +21,7 @@ Features:
 * The plugin is lightweight.
 
 == Installation ==
-1. Upload `wpbakery-video-player.zip` to the install plugin page
+1. Upload `video-player-for-wpbakery.zip` to the install plugin page
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Go to page or posts and add video to your content
 

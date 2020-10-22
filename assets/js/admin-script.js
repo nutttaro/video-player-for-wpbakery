@@ -1,33 +1,33 @@
 jQuery(function ($) {
 
   $(document).on('vcPanel.shown', function (e) {
-    var $type = $(e.target).find('.wpbakery-video-player-type select');
+    var $type = $(e.target).find('.video-player-for-wpbakery-type select');
     triggerVideoFields($type, $(e.target));
 
   });
 
-  $(document).on('change', '.wpbakery-video-player-type select', function () {
-    var $type = $('#vc_ui-panel-edit-element').find('.wpbakery-video-player-type select');
+  $(document).on('change', '.video-player-for-wpbakery-type select', function () {
+    var $type = $('#vc_ui-panel-edit-element').find('.video-player-for-wpbakery-type select');
     triggerVideoFields($type, $('#vc_ui-panel-edit-element'));
   });
 
   function triggerVideoFields($type, $target) {
     if ($type.length) {
       if ($type.val() === 'html5') {
-        $target.find('.wpbakery-video-player-video').show();
-        $target.find('.wpbakery-video-player-video_url').hide();
+        $target.find('.video-player-for-wpbakery-video').show();
+        $target.find('.video-player-for-wpbakery-video_url').hide();
       } else {
-        $target.find('.wpbakery-video-player-video').hide();
-        $target.find('.wpbakery-video-player-video_url').show();
+        $target.find('.video-player-for-wpbakery-video').hide();
+        $target.find('.video-player-for-wpbakery-video_url').show();
       }
     }
   }
 
-  $(document).on('change', '.wpbakery-video-player-autoplay input', function () {
+  $(document).on('change', '.video-player-for-wpbakery-autoplay input', function () {
     if (this.checked) {
-      $('.wpbakery-video-player-muted input').prop('checked', true);
+      $('.video-player-for-wpbakery-muted input').prop('checked', true);
     } else {
-      $('.wpbakery-video-player-muted input').prop('checked', false);
+      $('.video-player-for-wpbakery-muted input').prop('checked', false);
     }
   });
 
