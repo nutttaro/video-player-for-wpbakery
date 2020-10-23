@@ -31,17 +31,13 @@ Features:
 
 Add code below in theme’s `functions.php` file or `wp-config.php` file
 
-```
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
-```
 
 or add code below in `.htaccess` file
 
-```
 php_value upload_max_filesize 64M
 php_value post_max_size 64M
-```
 
 == Screenshots ==
 
