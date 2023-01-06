@@ -3,7 +3,7 @@ Contributors: nutttaro
 Donate link: https://www.buymeacoffee.com/nutttaro
 Tags: video-player-for-wpbakery, video-player, html5, self-hosted-video
 Requires at least: 4.7
-Tested up to: 5.5.1
+Tested up to: 6.1.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -47,6 +47,9 @@ php_value post_max_size 64M
 1. Video Player display on frontend
 
 == Changelog ==
+
+= 1.0.1
+Tested up to 6.1.1
 
 = 1.0.0 =
 * Initial Release
