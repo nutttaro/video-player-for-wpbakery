@@ -3,8 +3,8 @@
  * Plugin Name:       Video Player for WPBakery
  * Plugin URI:        https://wordpress.org/plugins/video-player-for-wpbakery/
  * Description:       Video Player add-on for WPBakery Page Builder allow add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
- * Version:           1.0.1
- * Requires at least: 4.7
+ * Version:           1.0.2
+ * Requires at least: 5.7
  * Requires PHP:      7.4
  * Author:            NuttTaro
  * Author URI:        https://nutttaro.com
@@ -14,16 +14,15 @@
  * Domain Path:       /languages
  */
 
-// don't load directly
-if (!defined('ABSPATH')) {
-    die('-1');
+if ( ! defined( 'ABSPATH' ) ) {
+	die( '-1' );
 }
 
 // Define constants.
 define('WBVP_PATH', plugin_dir_path(__FILE__));
 define('WBVP_BASENAME', plugin_basename(__FILE__));
 define('WBVP_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('WBVP_VERSION', '1.0.1');
+define('WBVP_VERSION', '1.0.2');
 
 /**
  * Class Video_Player_For_WPBakery
@@ -276,14 +275,15 @@ class Video_Player_For_WPBakery
 
         ob_start();
 
-        if ($type === 'html5' && $video) {
+        if ($type === 'html5' && !empty($video) && is_numeric($video)) {
             $url = wp_get_attachment_url($video);
             $mime_type = get_post_mime_type($video);
             include WBVP_PATH . '/templates/video-html5.php';
         }
 
+		$video_url = esc_url($video_url);
         if ($type === 'embed' && $this->check_video_link($video_url)) {
-            $embed_code = wp_oembed_get($video_url, ['width' => $width, 'height' => $height]);
+            $embed_code = wp_oembed_get($video_url, ['width' => esc_attr($width), 'height' => esc_attr($height)]);
             if ($embed_code) {
                 include WBVP_PATH . '/templates/embed.php';
             }
