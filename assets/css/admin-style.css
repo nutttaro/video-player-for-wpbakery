@@ -1,0 +1,61 @@
+.wbvp-video-field-container {
+  margin: 10px 0;
+}
+
+.wbvp-video-preview {
+  margin: 10px 0;
+}
+
+.wbvp-video-filename {
+  margin: 5px 0;
+  padding: 8px 12px;
+  background: #f0f0f1;
+  border-left: 4px solid #2271b1;
+  font-size: 13px;
+}
+
+.wbvp-video-filename.wbvp-no-video {
+  background: #f6f7f7;
+  border-left-color: #c3c4c7;
+  color: #787c82;
+}
+
+.wbvp-video-actions {
+  margin: 10px 0;
+}
+
+.wbvp-video-actions .button {
+  margin-right: 5px;
+}
+
+.wbvp-hidden {
+  display: none !important;
+}
+
+.wbvp-add-video {
+  background: #2271b1;
+  border-color: #2271b1;
+  color: #fff;
+}
+
+.wbvp-add-video:hover {
+  background: #135e96;
+  border-color: #135e96;
+  color: #fff;
+}
+
+.wbvp-remove-video {
+  background: #d63638;
+  border-color: #d63638;
+  color: #fff;
+}
+
+.wbvp-remove-video:hover {
+  background: #b32d2e;
+  border-color: #b32d2e;
+  color: #fff;
+}
+
+.vc_edit-form-tab [data-vc-shortcode-param-name="video_id"] {
+  display: none;
+}

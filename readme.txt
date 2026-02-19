@@ -3,9 +3,9 @@ Contributors: nutttaro
 Donate link: https://www.buymeacoffee.com/nutttaro
 Tags: video-player-for-wpbakery, video-player, html5, self-hosted-video
 Requires at least: 5.7
-Tested up to: 6.8.1
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,25 @@ php_value post_max_size 64M
 1. Video Player display on frontend
 
 == Changelog ==
+
+= 1.1.0 =
+* Fixed WPBakery serialization issue causing empty field on modal reopen
+* Added edit_form_line class to field wrapper for better WPBakery compatibility
+* Simplified input field structure (single line, no data attributes)
+* Added unique ID to each input field instance
+* Added data-param attribute to field wrapper
+* Enhanced JavaScript to directly update WPBakery's internal state (window.vc.atts)
+* Removed wpb-textinput class that may have interfered with serialization
+* Cleaner, more maintainable code structure
+* Added playsinline option for mobile inline video playback
+* Added poster image option to display preview image before video plays
+* Added preload dropdown setting (Auto, Metadata, None)
+* Modernized HTML5 video tag with proper conditional attribute rendering
+* Added crossorigin attribute for better CORS support
+* Enabled picture-in-picture mode support
+* Improved security with proper URL escaping (esc_url)
+* Changed default preload setting to 'metadata' for better performance
+* Enhanced code formatting and readability
 
 = 1.0.2 =
 * Fixed XSS

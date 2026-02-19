@@ -1,90 +1,102 @@
 jQuery(function ($) {
+  'use strict';
 
-  $(document).on('vcPanel.shown', function (e) {
-    var $type = $(e.target).find('.video-player-for-wpbakery-type select');
-    triggerVideoFields($type, $(e.target));
-
-  });
-
-  $(document).on('change', '.video-player-for-wpbakery-type select', function () {
-    var $type = $('#vc_ui-panel-edit-element').find('.video-player-for-wpbakery-type select');
-    triggerVideoFields($type, $('#vc_ui-panel-edit-element'));
-  });
-
-  function triggerVideoFields($type, $target) {
+  // Video type field toggling
+  function toggleVideoFields($panel) {
+    var $type = $panel.find('.video-player-for-wpbakery-type select');
     if ($type.length) {
       if ($type.val() === 'html5') {
-        $target.find('.video-player-for-wpbakery-video').show();
-        $target.find('.video-player-for-wpbakery-video_url').hide();
+        $panel.find('.video-player-for-wpbakery-video').show();
+        $panel.find('.video-player-for-wpbakery-video_url').hide();
       } else {
-        $target.find('.video-player-for-wpbakery-video').hide();
-        $target.find('.video-player-for-wpbakery-video_url').show();
+        $panel.find('.video-player-for-wpbakery-video').hide();
+        $panel.find('.video-player-for-wpbakery-video_url').show();
       }
     }
   }
 
-  $(document).on('change', '.video-player-for-wpbakery-autoplay input', function () {
-    if (this.checked) {
-      $('.video-player-for-wpbakery-muted input').prop('checked', true);
-    } else {
-      $('.video-player-for-wpbakery-muted input').prop('checked', false);
-    }
+  // When panel is shown
+  $(document).on('vcPanel.shown', function (e) {
+    var $panel = $(e.target);
+    toggleVideoFields($panel);
   });
 
-
-  // Set all variables to be used in scope
-  var frame, $vcUiWindow = $('.vc_ui-panel-window-inner');
-
-  // Add Video
-  $(document).on("click", ".gallery_widget_add_video", function (event) {
-
-    event.preventDefault();
-
-    // If the media frame already exists, reopen it.
-    if (frame) {
-      frame.open();
-      return;
+  // When video type changes
+  $(document).on('change', '.video-player-for-wpbakery-type select', function () {
+    var $panel = $(this).closest('.vc_ui-panel-window');
+    if (!$panel.length) {
+      $panel = $('#vc_ui-panel-edit-element');
     }
+    toggleVideoFields($panel);
+  });
 
-    // Create a new media frame
-    frame = wp.media({
+  // Auto-mute when autoplay is enabled
+  $(document).on('change', '.video-player-for-wpbakery-autoplay input', function () {
+    var $muted = $(this).closest('.vc_ui-panel-window').find('.video-player-for-wpbakery-muted input');
+    if (!$muted.length) {
+      $muted = $('#vc_ui-panel-edit-element').find('.video-player-for-wpbakery-muted input');
+    }
+    $muted.prop('checked', this.checked);
+  });
+
+  // Add Video button click
+  $(document).on('click', '.wbvp-add-video', function (e) {
+    e.preventDefault();
+
+    var $button = $(this);
+    var paramName = $button.data('param');
+    var $editLine = $button.closest('.edit_form_line');
+    var $input = $editLine.find('input[name="' + paramName + '"].wpb_vc_param_value');
+	var $input_video_id = $editLine.closest('.vc_edit-form-tab ').find('input[name="video_id"].wpb_vc_param_value');
+
+    // Create media frame
+    var frame = wp.media({
       title: 'Select or Upload Video',
       button: {
         text: 'Use this video'
       },
-      multiple: false,  // Set to true to allow multiple files to be selected,
+      multiple: false,
       library: {
         type: ['video']
-      },
+      }
     });
 
-
-    // When an video is selected in the media library
+    // When a video is selected
     frame.on('select', function () {
-
-      // Get media attachment details from the frame state
       var attachment = frame.state().get('selection').first().toJSON();
 
-      // Send the attachment id to our hidden input
-      $vcUiWindow.find('.widget_attached_video_id').val(attachment.id);
-      $vcUiWindow.find('.widget_attached_video_name').html(attachment.filename);
+      // Update hidden input and trigger change
+      $input.val(attachment.id).trigger('change');
+	  $input_video_id.val(attachment.id).trigger('change'); // Store filename in video_id for backward compatibility
 
-      $vcUiWindow.find('.gallery_widget_add_video').hide();
-      $vcUiWindow.find('.gallery_widget_remove_video').show();
+      // Update UI
+      var filenameText = '<strong>Selected:</strong> ' + attachment.filename;
+      $editLine.find('.wbvp-video-filename').html(filenameText).removeClass('wbvp-no-video');
+      $editLine.find('.wbvp-add-video').addClass('wbvp-hidden');
+      $editLine.find('.wbvp-remove-video').removeClass('wbvp-hidden');
     });
 
-    // Finally, open the modal on click
     frame.open();
   });
 
-  $(document).on("click", ".gallery_widget_remove_video", function (event) {
+  // Remove Video button click
+  $(document).on('click', '.wbvp-remove-video', function (e) {
+    e.preventDefault();
 
-    $vcUiWindow.find('.widget_attached_video_id').val('');
-    $vcUiWindow.find('.widget_attached_video_name').html('');
+    var $button = $(this);
+    var paramName = $button.data('param');
+    var $editLine = $button.closest('.edit_form_line');
+    var $input = $editLine.find('input[name="' + paramName + '"].wpb_vc_param_value');
+	var $input_video_id = $editLine.closest('.vc_edit-form-tab').find('input[name="video_id"].wpb_vc_param_value');
 
-    $vcUiWindow.find('.gallery_widget_add_video').show();
-    $vcUiWindow.find('.gallery_widget_remove_video').hide();
+    // Clear input value
+    $input.val('').trigger('change');
+	$input_video_id.val('').trigger('change'); // Clear video_id as well
 
+    // Update UI
+    $editLine.find('.wbvp-video-filename').html('No video selected').addClass('wbvp-no-video');
+    $editLine.find('.wbvp-add-video').removeClass('wbvp-hidden');
+    $editLine.find('.wbvp-remove-video').addClass('wbvp-hidden');
   });
 
 });
