@@ -4,10 +4,8 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div id="<?php echo esc_attr($el_id); ?>" class="video-player-for-wpbakery <?php echo esc_attr($el_class); ?>">
-    <div class="video-player-for-wpbakery-container">
+    <div class="video-player-for-wpbakery-container" style="aspect-ratio: <?php echo esc_attr($width); ?> / <?php echo esc_attr($height); ?>;">
         <video
-            width="<?php echo esc_attr($width); ?>"
-            height="<?php echo esc_attr($height); ?>"
             <?php if (!empty($controls)) : ?>controls<?php endif; ?>
             <?php if (!empty($autoplay)) : ?>autoplay<?php endif; ?>
             <?php if (!empty($loop)) : ?>loop<?php endif; ?>

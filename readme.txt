@@ -5,7 +5,7 @@ Tags: video-player-for-wpbakery, video-player, html5, self-hosted-video
 Requires at least: 5.7
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,14 @@ php_value post_max_size 64M
 1. Video Player display on frontend
 
 == Changelog ==
+
+= 1.2.0 =
+* Added responsive video player — videos now scale fluidly to fit their container
+* Added Privacy-Enhanced Mode option for YouTube embeds (uses youtube-nocookie.com)
+* Fixed potential XSS via crafted filenames in the media library picker
+* Fixed video URL detection failing for URLs starting with youtube/vimeo domain
+* Replaced extract() with explicit variable assignments for safer shortcode handling
+* Fixed unclosed output buffer in shortcode rendering
 
 = 1.1.0 =
 * Fixed WPBakery serialization issue causing empty field on modal reopen

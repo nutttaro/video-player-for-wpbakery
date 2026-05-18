@@ -1,14 +1,19 @@
 .video-player-for-wpbakery {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   padding: 40px 0;
 }
 
-/*# sourceMappingURL=style.css.map */
+.video-player-for-wpbakery .video-player-for-wpbakery-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.video-player-for-wpbakery .video-player-for-wpbakery-container video,
+.video-player-for-wpbakery .video-player-for-wpbakery-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

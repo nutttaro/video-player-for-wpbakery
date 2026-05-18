@@ -3,7 +3,7 @@
  * Plugin Name:       Video Player for WPBakery
  * Plugin URI:        https://wordpress.org/plugins/video-player-for-wpbakery/
  * Description:       Video Player add-on for WPBakery Page Builder allow add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 5.7
  * Requires PHP:      7.4
  * Author:            NuttTaro
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define('WBVP_PATH', plugin_dir_path(__FILE__));
 define('WBVP_BASENAME', plugin_basename(__FILE__));
 define('WBVP_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('WBVP_VERSION', '1.1.0');
+define('WBVP_VERSION', '1.2.0');
 
 /**
  * Class Video_Player_For_WPBakery
@@ -158,6 +158,14 @@ class Video_Player_For_WPBakery
                             'admin_label'      => true,
                             'description'      => esc_html__('Youtube or Vimeo URL that should be embedded the video.', 'video-player-for-wpbakery'),
                             'value'            => '',
+                            'edit_field_class' => 'vc_col-xs-12 video-player-for-wpbakery-video_url',
+                        ],
+                        [
+                            'type'             => 'checkbox',
+                            'heading'          => esc_html__('Privacy-Enhanced Mode', 'video-player-for-wpbakery'),
+                            'param_name'       => 'privacy_mode',
+                            'description'      => esc_html__('Uses youtube-nocookie.com to reduce tracking of visitors. YouTube only.', 'video-player-for-wpbakery'),
+                            'value'            => [esc_html__('Yes', 'video-player-for-wpbakery') => 'privacy_mode'],
                             'edit_field_class' => 'vc_col-xs-12 video-player-for-wpbakery-video_url',
                         ],
                         [
@@ -325,7 +333,7 @@ class Video_Player_For_WPBakery
         $atts = shortcode_atts([
             'type'         => 'html5',
             'video'        => '',
-			'video_id'     => '',
+            'video_id'     => '',
             'video_url'    => '',
             'width'        => '560',
             'height'       => '315',
@@ -336,36 +344,56 @@ class Video_Player_For_WPBakery
             'muted'        => '',
             'playsinline'  => '',
             'poster'       => '',
+            'privacy_mode' => '',
             'el_id'        => '',
             'el_class'     => '',
         ], $atts);
-        extract($atts);
+
+        $type        = $atts['type'];
+        $video       = $atts['video'];
+        $video_id    = $atts['video_id'];
+        $video_url   = $atts['video_url'];
+        $width       = $atts['width'];
+        $height      = $atts['height'];
+        $controls    = $atts['controls'];
+        $preload     = $atts['preload'];
+        $autoplay    = $atts['autoplay'];
+        $loop        = $atts['loop'];
+        $muted       = $atts['muted'];
+        $playsinline = $atts['playsinline'];
+        $poster      = $atts['poster'];
+        $privacy_mode = $atts['privacy_mode'];
+        $el_id       = $atts['el_id'];
+        $el_class    = $atts['el_class'];
 
         ob_start();
 
-		if ($type === 'html5') {
-		    $attachment_id = !empty($video) && is_numeric($video) ? $video : $video_id; // Support both video and video_id for backward compatibility
-			if ($attachment_id) {
-				$url = wp_get_attachment_url($attachment_id);
-				$mime_type = get_post_mime_type($attachment_id);
-				$poster_url = '';
-				if (!empty($poster) && is_numeric($poster)) {
-					$poster_url = wp_get_attachment_url($poster);
-				}
-				include WBVP_PATH . '/templates/video-html5.php';
-			}
+        if ($type === 'html5') {
+            $attachment_id = !empty($video) && is_numeric($video) ? $video : $video_id;
+            if ($attachment_id) {
+                $url = wp_get_attachment_url($attachment_id);
+                $mime_type = get_post_mime_type($attachment_id);
+                $poster_url = '';
+                if (!empty($poster) && is_numeric($poster)) {
+                    $poster_url = wp_get_attachment_url($poster);
+                }
+                include WBVP_PATH . '/templates/video-html5.php';
+            }
         }
 
-		$video_url = esc_url($video_url);
+        $video_url = esc_url($video_url);
         if ($type === 'embed' && $this->check_video_link($video_url)) {
             $embed_code = wp_oembed_get($video_url, ['width' => esc_attr($width), 'height' => esc_attr($height)]);
             if ($embed_code) {
+                if (!empty($privacy_mode)) {
+                    $embed_code = str_replace('youtube.com', 'youtube-nocookie.com', $embed_code);
+                }
                 include WBVP_PATH . '/templates/embed.php';
             }
         }
 
         $output = ob_get_contents();
-        ob_clean();
+        ob_end_clean();
 
         return $output;
 
@@ -379,11 +407,11 @@ class Video_Player_For_WPBakery
      */
     public function check_video_link($url)
     {
-        if (strpos($url, 'youtube') > 0) {
+        if (strpos($url, 'youtube') !== false) {
             return true;
-        } elseif (strpos($url, 'youtu.be') > 0) {
+        } elseif (strpos($url, 'youtu.be') !== false) {
             return true;
-        } elseif (strpos($url, 'vimeo') > 0) {
+        } elseif (strpos($url, 'vimeo') !== false) {
             return true;
         } else {
             return false;

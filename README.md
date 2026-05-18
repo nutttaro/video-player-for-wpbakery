@@ -46,6 +46,14 @@ php_value post_max_size 64M
 
 ## Changelog
 
+###### 1.2.0
+* Added responsive video player — videos now scale fluidly to fit their container
+* Added Privacy-Enhanced Mode option for YouTube embeds (uses youtube-nocookie.com)
+* Fixed potential XSS via crafted filenames in the media library picker
+* Fixed video URL detection failing for URLs starting with youtube/vimeo domain
+* Replaced extract() with explicit variable assignments for safer shortcode handling
+* Fixed unclosed output buffer in shortcode rendering
+
 ###### 1.1.0
 * Fixed WPBakery serialization issue causing empty field on modal reopen
 * Added edit_form_line class to field wrapper for better WPBakery compatibility

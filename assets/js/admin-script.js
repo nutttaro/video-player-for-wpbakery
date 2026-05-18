@@ -70,7 +70,8 @@ jQuery(function ($) {
 	  $input_video_id.val(attachment.id).trigger('change'); // Store filename in video_id for backward compatibility
 
       // Update UI
-      var filenameText = '<strong>Selected:</strong> ' + attachment.filename;
+      var escapedName = $('<span>').text(attachment.filename).html();
+      var filenameText = '<strong>Selected:</strong> ' + escapedName;
       $editLine.find('.wbvp-video-filename').html(filenameText).removeClass('wbvp-no-video');
       $editLine.find('.wbvp-add-video').addClass('wbvp-hidden');
       $editLine.find('.wbvp-remove-video').removeClass('wbvp-hidden');
