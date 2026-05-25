@@ -4,7 +4,7 @@
 * Donate link: https://www.buymeacoffee.com/nutttaro
 * Tags: video-player-for-wpbakery, video-player, html5, self-hosted-video
 * Requires at least: 5.7
-* Tested up to: 6.9.1
+* Tested up to: 7.0
 * Requires PHP: 7.4
 * License: GPLv2 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html

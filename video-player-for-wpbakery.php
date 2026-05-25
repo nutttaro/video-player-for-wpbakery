@@ -4,6 +4,7 @@
  * Plugin URI:        https://wordpress.org/plugins/video-player-for-wpbakery/
  * Description:       Video Player add-on for WPBakery Page Builder allow add YouTube, Vimeo and Self-Hosted videos (HTML5) to your WordPress website.
  * Version:           1.2.0
+ * Tested up to:      7.0
  * Requires at least: 5.7
  * Requires PHP:      7.4
  * Author:            NuttTaro
